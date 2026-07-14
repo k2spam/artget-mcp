@@ -237,11 +237,68 @@ def skull(tile: int = TILE, seed: int = 42) -> Image.Image:
     return drop_shadow(quantize(raw), 1, 2, alpha=70)
 
 
+def fallen_branch(tile: int = TILE, seed: int = 42) -> Image.Image:
+    raw = img(tile)
+    d = ImageDraw.Draw(raw)
+    wood, wdark = hex_to_rgb("#6e4a2f"), hex_to_rgb("#5a3a24")
+    rng = np.random.default_rng(seed)
+    y = tile // 2 + int(rng.integers(-3, 4))
+    x0 = int(tile * 0.15)
+    pts = [(x0, y)]
+    x = x0
+    while x < tile * 0.85:
+        x += int(rng.integers(3, 6))
+        y += int(rng.integers(-2, 3))
+        pts.append((x, y))
+    for i in range(len(pts) - 1):
+        d.line([pts[i], pts[i + 1]], fill=wood + (255,), width=2)
+        d.line([pts[i], pts[i + 1]], fill=wdark + (255,), width=1)
+    # a couple of small forks
+    for _ in range(2):
+        i = int(rng.integers(1, len(pts) - 1))
+        bx, by = pts[i]
+        d.line([(bx, by), (bx + int(rng.integers(-4, 5)), by - int(rng.integers(3, 6)))],
+               fill=wood + (255,), width=1)
+    return _finalize(raw)
+
+
+def flat_rock(tile: int = TILE, seed: int = 42) -> Image.Image:
+    raw = img(tile)
+    d = ImageDraw.Draw(raw)
+    base, dark, light = (hex_to_rgb(c) for c in STONE)
+    cx, cy = tile / 2, tile * 0.60
+    rw, rh = tile * 0.30, tile * 0.16
+    d.ellipse([cx - rw, cy - rh, cx + rw, cy + rh + tile * 0.10], fill=dark + (255,))  # body
+    d.ellipse([cx - rw, cy - rh, cx + rw, cy + rh], fill=base + (255,))                # flat top
+    d.ellipse([cx - rw * 0.7, cy - rh * 0.8, cx + rw * 0.2, cy], fill=light + (255,))  # highlight
+    return _finalize(raw)
+
+
+def mushroom_cluster(tile: int = TILE, seed: int = 42) -> Image.Image:
+    raw = img(tile)
+    d = ImageDraw.Draw(raw)
+    rng = np.random.default_rng(seed)
+    stem = hex_to_rgb("#e8c8a8")
+    caps = ["#b0453a", "#cc6452", "#8f4f2f"]
+    spot = hex_to_rgb("#e8e4dc")
+    for k in range(3):
+        cx = tile / 2 + (k - 1) * tile * 0.16 + int(rng.integers(-2, 3))
+        sc = 0.16 - 0.03 * (k % 2)
+        base = tile * 0.78 - (k % 2) * tile * 0.08
+        d.rectangle([cx - 1, base - tile * 0.12, cx + 1, base], fill=stem + (255,))
+        cap = hex_to_rgb(caps[int(rng.integers(len(caps)))])
+        d.pieslice([cx - tile * sc, base - tile * 0.24, cx + tile * sc, base - tile * 0.06],
+                   180, 360, fill=cap + (255,))
+        d.point((cx, base - tile * 0.15), fill=spot + (255,))
+    return _finalize(raw)
+
+
 PROPS = {
     "tree_round": tree_round, "tree_pine": tree_pine, "tree_palm": tree_palm,
     "bush": bush, "stump": stump, "boulder": boulder, "rock_small": rock_small,
-    "flowers": flowers, "mushroom": mushroom, "grass_tuft": grass_tuft,
-    "reeds": reeds, "skull": skull,
+    "flat_rock": flat_rock, "flowers": flowers, "mushroom": mushroom,
+    "mushroom_cluster": mushroom_cluster, "grass_tuft": grass_tuft,
+    "reeds": reeds, "fallen_branch": fallen_branch, "skull": skull,
 }
 
 KINDS = tuple(PROPS)

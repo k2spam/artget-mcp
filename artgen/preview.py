@@ -47,6 +47,28 @@ def contact_sheet(tiles: Iterable[Image.Image], cols: int = 8, scale: int = 4,
     return sheet
 
 
+def gallery(images: Iterable[Image.Image], cols: int = 5, cell: int = 72,
+            scale: int = 2, pad: int = 4) -> Image.Image:
+    """Lay out varied-size sprites, each centred (bottom-aligned) in a fixed
+    cell scaled by `scale`, on a checker background. For buildings/props."""
+    images = [im.convert("RGBA") for im in images]
+    if not images:
+        return Image.new("RGBA", (1, 1))
+    cw = ch = cell * scale
+    cols = max(1, min(cols, len(images)))
+    rows = (len(images) + cols - 1) // cols
+    W = cols * cw + (cols + 1) * pad
+    H = rows * ch + (rows + 1) * pad
+    sheet = _checker(W, H)
+    for i, im in enumerate(images):
+        r, c = divmod(i, cols)
+        big = im.resize((im.size[0] * scale, im.size[1] * scale), Image.NEAREST)
+        cx = pad + c * (cw + pad) + (cw - big.size[0]) // 2
+        cy = pad + r * (ch + pad) + (ch - big.size[1]) - pad  # bottom-aligned
+        sheet.alpha_composite(big, (max(0, cx), max(0, cy)))
+    return sheet
+
+
 def to_b64(im: Image.Image) -> str:
     """PNG bytes of an image as a base64 string (for inline preview)."""
     buf = io.BytesIO()
