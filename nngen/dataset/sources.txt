@@ -1,0 +1,8 @@
+# Исходники датасета hqiso (изометрия). Формат:
+# <путь от корня репо> | <доп. тэги через запятую> | <макс. кропов (опц.)>
+# Строки с # игнорируются. Только изометрические референсы!
+references/iso/craiyon_village.png | village, river, windmill, bridge, gardens, lamp posts, wm_br
+references/world/!image copy 15.png | village, river, windmill, farmland, boats, wm_br
+references/world/image copy 14.png | suburb, red roofs, roads, solar panels
+references/world/image copy 12.png | dense village, forest, habbo style | 15
+references/world/image copy 8.png | terrain tiles, trees, sprite sheet | 1

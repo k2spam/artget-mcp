@@ -1,0 +1,15 @@
+# kohya sd-scripts dataset config для hqiso LoRA
+[general]
+enable_bucket = true
+caption_extension = ".txt"
+shuffle_caption = false
+keep_tokens = 1            # hqiso всегда первым токеном
+
+[[datasets]]
+resolution = 1024
+batch_size = 1
+bucket_no_upscale = true
+
+  [[datasets.subsets]]
+  image_dir = "nngen/dataset/train/hqiso"
+  num_repeats = 10

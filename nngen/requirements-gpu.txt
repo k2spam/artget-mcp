@@ -1,0 +1,12 @@
+# GPU-машина (обучение + генерация). Python 3.10/3.11.
+# torch ставить отдельно под свою CUDA, например:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+diffusers>=0.31
+transformers>=4.44
+accelerate>=0.33
+safetensors
+peft
+bitsandbytes          # AdamW8bit для обучения
+numpy
+pillow
+# для обучения дополнительно нужен клон kohya sd-scripts (см. RUNBOOK.md)
