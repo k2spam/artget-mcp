@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "heroquarium-artgen"
+version = "0.1.0"
+description = "Pixel-art asset generation pipeline for Heroquarium (procgen + pixelize + MCP)"
+requires-python = ">=3.10"
+dependencies = [
+    "pillow>=10.0",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+mcp = ["mcp>=1.2"]
+
+[project.scripts]
+artgen = "artgen.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["artgen*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
