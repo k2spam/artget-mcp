@@ -3,7 +3,6 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .eggs/
-build/
 dist/
 .pytest_cache/
 .venv/
@@ -11,6 +10,9 @@ venv/
 
 # generated art
 out/
+
+# plugin builds — keep the log + folder, ignore the binaries
+build/*.plugin
 
 # OS
 .DS_Store
