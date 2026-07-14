@@ -28,6 +28,7 @@ PLUGIN_NAME = "heroquarium-artgen"
 INCLUDE = [
     ("plugin/.claude-plugin/plugin.json", ".claude-plugin/plugin.json"),
     ("plugin/.mcp.json", ".mcp.json"),
+    ("plugin/requirements.txt", "requirements.txt"),
     ("plugin/README.md", "README.md"),
     ("mcp/server.py", "mcp/server.py"),
     ("mcp/README.md", "mcp/README.md"),

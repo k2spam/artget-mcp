@@ -1,0 +1,7 @@
+python=3.10.12
+executable=/usr/bin/python3
+cwd=/sessions/nifty-nice-archimedes/mnt/ArtGen-MCP
+plugin_root=/sessions/nifty-nice-archimedes/mnt/ArtGen-MCP
+dep PIL: OK
+dep numpy: OK
+dep mcp: OK

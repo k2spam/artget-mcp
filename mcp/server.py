@@ -214,13 +214,42 @@ def _register(app):
         return gen_anim(effect, seed, nframes)
 
 
+def _diagnostics() -> str:
+    lines = [f"python={sys.version.split()[0]}", f"executable={sys.executable}",
+             f"cwd={os.getcwd()}", f"plugin_root={ROOT}"]
+    for mod in ("PIL", "numpy", "mcp"):
+        try:
+            __import__(mod)
+            lines.append(f"dep {mod}: OK")
+        except Exception as e:
+            lines.append(f"dep {mod}: MISSING ({e})")
+    return "\n".join(lines)
+
+
 def main():
+    # Always drop a startup log next to the server so connection failures are
+    # diagnosable (Cowork shows no error when a stdio server dies on launch).
+    diag = _diagnostics()
+    try:
+        open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "startup.log"), "w").write(diag + "\n")
+    except Exception:
+        pass
     try:
         from mcp.server.fastmcp import FastMCP
     except Exception as e:  # pragma: no cover
-        print("The 'mcp' package is required to run the server: pip install mcp\n", e)
+        sys.stderr.write(
+            "heroquarium-artgen: cannot start — the 'mcp' package is missing.\n"
+            "Install deps in the SAME python this server runs with:\n"
+            "    pip install mcp pillow numpy\n"
+            f"error: {e}\n{diag}\n")
         return 1
-    app = FastMCP("heroquarium-artgen-iso")
+    try:
+        import PIL  # noqa
+        import numpy  # noqa
+    except Exception as e:  # pragma: no cover
+        sys.stderr.write(f"heroquarium-artgen: missing pillow/numpy: {e}\n{diag}\n")
+        return 1
+    app = FastMCP("heroquarium-artgen")
     _register(app)
     app.run()
     return 0
