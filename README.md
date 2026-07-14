@@ -44,7 +44,23 @@ python -m artgen.pixelize sheet.png --src-tile 32 -o out/
 
 `--method box|lanczos` for "fat" (AI/painted) art, `nearest` for already-pixel art.
 
+## procgen
+
+```bash
+python -m artgen.procgen terrain --tile 32 --seed 42 --variety 3 -o out/terrain/
+python -m artgen.procgen nature  --tile 32 --seed 42 -o out/nature/
+python -m artgen.procgen all -o out/
+```
+
+Terrain biomes: grass (+flowers), forest_floor, dirt, sand, stone, snow, swamp,
+plus animated water frames — all tileable (seamless when repeated). Nature
+props: round/pine/palm trees, bush, stump, boulder, small rock, flowers,
+mushroom, grass tuft, reeds, skull. Each run writes PNGs + a `_*_sheet.png`
+contact sheet.
+
 ## Status
 
-- **M1 — done:** scaffold, palette, canvas primitives, pixelize ported, tests green.
-- M2+ — terrain, autotile, buildings, MCP server, nngen (GPU). See blueprint §11.
+- **M1 — done:** scaffold, palette, canvas primitives, pixelize ported.
+- **M2 — done:** tileable terrain (7 biomes + water), 12 nature props, preview
+  (contact sheets, 3x3 tiling check), procgen CLI. 20 tests green.
+- M3+ — autotile transitions (core), buildings, MCP server, nngen (GPU). §11.

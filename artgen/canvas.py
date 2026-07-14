@@ -18,6 +18,7 @@ from .palette import RGB, hex_to_rgb, nearest, quantize, ramp  # re-export ramp
 __all__ = [
     "img", "as_rgba", "from_map", "ramp", "value_noise", "dither",
     "drop_shadow", "outline", "mirror_x", "snap_palette",
+    "radial_blob", "shade_mask", "lit",
 ]
 
 
@@ -59,29 +60,108 @@ def from_map(rows: Sequence[str], pal: Mapping[str, object]) -> Image.Image:
     return im
 
 
-def value_noise(w: int, h: int, seed: int = 0, octaves: int = 3,
-                base_freq: int = 2) -> np.ndarray:
-    """Coherent value noise in [0,1], shape (h, w). Deterministic per seed.
+def _octave(w: int, h: int, freq: int, rng: np.random.Generator,
+            tileable: bool) -> np.ndarray:
+    """One smooth-interpolated random lattice layer, shape (h, w) in [0,1]."""
+    grid = rng.random((freq, freq))
+    ys = np.linspace(0, freq, h, endpoint=False)
+    xs = np.linspace(0, freq, w, endpoint=False)
+    y0 = np.floor(ys).astype(int)
+    x0 = np.floor(xs).astype(int)
+    fy = ys - y0
+    fx = xs - x0
+    if tileable:
+        y1, x1 = (y0 + 1) % freq, (x0 + 1) % freq
+        y0, x0 = y0 % freq, x0 % freq
+    else:
+        y1 = np.minimum(y0 + 1, freq - 1)
+        x1 = np.minimum(x0 + 1, freq - 1)
+        y0 = np.minimum(y0, freq - 1)
+        x0 = np.minimum(x0, freq - 1)
+    # smoothstep for organic gradients
+    sy = (fy * fy * (3 - 2 * fy))[:, None]
+    sx = (fx * fx * (3 - 2 * fx))[None, :]
+    v00 = grid[np.ix_(y0, x0)]
+    v01 = grid[np.ix_(y0, x1)]
+    v10 = grid[np.ix_(y1, x0)]
+    v11 = grid[np.ix_(y1, x1)]
+    top = v00 * (1 - sx) + v01 * sx
+    bot = v10 * (1 - sx) + v11 * sx
+    return top * (1 - sy) + bot * sy
 
-    Sums `octaves` layers of bilinearly-upsampled random grids at doubling
-    frequency and halving amplitude (fractal / fBm).
+
+def value_noise(w: int, h: int, seed: int = 0, octaves: int = 3,
+                base_freq: int = 2, tileable: bool = False) -> np.ndarray:
+    """Coherent fBm value noise in [0,1], shape (h, w). Deterministic per seed.
+
+    Sums `octaves` smooth random lattices at doubling frequency and halving
+    amplitude. With tileable=True the field wraps seamlessly (edges match),
+    which is required for repeating ground tiles.
     """
     rng = np.random.default_rng(seed)
     acc = np.zeros((h, w), dtype=np.float64)
     amp, amp_sum = 1.0, 0.0
     freq = base_freq
     for _ in range(octaves):
-        gh, gw = freq + 1, freq + 1
-        grid = rng.random((gh, gw))
-        layer = np.asarray(
-            Image.fromarray((grid * 255).astype(np.uint8)).resize((w, h), Image.BILINEAR),
-            dtype=np.float64,
-        ) / 255.0
-        acc += layer * amp
+        acc += _octave(w, h, freq, rng, tileable) * amp
         amp_sum += amp
         amp *= 0.5
         freq *= 2
     return acc / amp_sum
+
+
+def lit(base: RGB, light: RGB, dark: RGB, tile: int, strength: float = 1.0) -> np.ndarray:
+    """Per-pixel colour picker biased by a top-left light gradient.
+
+    Returns an (h, w, 3) float array interpolating dark->base->light along the
+    top-left -> bottom-right diagonal. Used to shade prop silhouettes.
+    """
+    ys = np.linspace(-1, 1, tile)[:, None]
+    xs = np.linspace(-1, 1, tile)[None, :]
+    g = np.clip(0.5 - (ys + xs) * 0.25 * strength, 0, 1)  # 1=light (top-left)
+    base_a = np.array(base, float)
+    light_a = np.array(light, float)
+    dark_a = np.array(dark, float)
+    out = np.empty((tile, tile, 3))
+    hi = g >= 0.5
+    t = np.where(hi, (g - 0.5) * 2, g * 2)[..., None]
+    out[hi] = (base_a * (1 - t) + light_a * t)[hi]
+    out[~hi] = (dark_a * (1 - t) + base_a * t)[~hi]
+    return out
+
+
+def radial_blob(tile: int, cx: float, cy: float, r: float, seed: int = 0,
+                rough: float = 0.35, octaves: int = 3) -> np.ndarray:
+    """Boolean mask (tile, tile) of an organic blob centred at (cx, cy).
+
+    Radius is perturbed by value noise so the outline is lumpy, not a clean
+    circle. Deterministic per seed.
+    """
+    n = value_noise(tile, tile, seed=seed, octaves=octaves, base_freq=3)
+    ys = np.arange(tile)[:, None] - cy
+    xs = np.arange(tile)[None, :] - cx
+    dist = np.sqrt(xs * xs + ys * ys)
+    thresh = r * (1.0 - rough + rough * n * 2 * 0.5) + (n - 0.5) * r * rough * 2
+    return dist <= thresh
+
+
+def shade_mask(mask: np.ndarray, base, light, dark, seed: int = 0,
+               mottle: float = 0.25) -> Image.Image:
+    """Fill a boolean mask with a lit base colour plus subtle noise mottling.
+
+    Light from top-left. Returns opaque-where-masked RGBA.
+    """
+    base, light, dark = as_rgba(base)[:3], as_rgba(light)[:3], as_rgba(dark)[:3]
+    tile = mask.shape[0]
+    col = lit(base, light, dark, tile)
+    if mottle > 0:
+        n = value_noise(tile, tile, seed=seed + 999, octaves=2, base_freq=4)
+        col = col + (n[..., None] - 0.5) * 2 * mottle * 40
+    col = np.clip(col, 0, 255).astype(np.uint8)
+    out = np.zeros((tile, tile, 4), dtype=np.uint8)
+    out[..., :3] = col
+    out[..., 3] = np.where(mask, 255, 0)
+    return Image.fromarray(out, "RGBA")
 
 
 # Ordered (Bayer) dither matrices, normalized to (0,1).
