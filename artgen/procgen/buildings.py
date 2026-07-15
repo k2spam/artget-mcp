@@ -18,7 +18,7 @@ from PIL import Image, ImageDraw
 from ..canvas import drop_shadow, outline
 from ..palette import hex_to_rgb, quantize
 
-OUTLINE = "#241d2b"
+OUTLINE = "#231b04"
 
 
 def _h(hexstr, a=255):
@@ -348,7 +348,7 @@ def flower_box(tile: int = 32, seed: int = 42) -> Image.Image:
 def lantern(tile: int = 32, seed: int = 42) -> Image.Image:
     raw = Image.new("RGBA", (tile, tile), (0, 0, 0, 0))
     d = ImageDraw.Draw(raw)
-    metal, mdark = _h("#565061"), _h("#241d2b")
+    metal, mdark = _h("#565061"), _h("#231b04")
     cx = tile // 2
     d.rectangle([cx - 1, tile - 26, cx + 1, tile - 4], fill=metal)
     d.line([(cx, tile - 26), (cx + 5, tile - 26)], fill=metal)

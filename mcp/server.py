@@ -154,6 +154,20 @@ def gen_anim(effect="smoke", seed=0, nframes=8) -> dict:
     return {"paths": [path], "manifest": manifest, "preview_png_b64": _b64(sheet, scale=2)}
 
 
+def gen_map(seed=1, gw=26, gh=20, houses=4, lake=True, forest=0.5,
+            forest_ring=0) -> dict:
+    """Полная красивая карта одним вызовом: деревня + дороги + озеро + лес.
+    forest_ring>0 — лесная опушка по периметру, дорога уходит с карты."""
+    from artgen.iso_world import compose
+    im, manifest = compose(seed=seed, gw=gw, gh=gh, houses=houses,
+                           lake=lake, forest=forest, forest_ring=forest_ring)
+    path = _save(im, f"map_{seed}_{gw}x{gh}")
+    prev = im.copy()
+    prev.thumbnail((640, 640))
+    return {"paths": [path], "manifest": manifest,
+            "preview_png_b64": _b64(prev, scale=1)}
+
+
 # ---- nngen bridge (remote GPU worker over HTTP) ----------------------------
 
 def _nn_endpoint() -> str | None:
@@ -274,6 +288,16 @@ def _register(app):
     def iso_anim(effect: str = "smoke", seed: int = 0, nframes: int = 8) -> dict:
         "Baked effect animation sheet (smoke/campfire/glow/water) + manifest."
         return gen_anim(effect, seed, nframes)
+
+    @app.tool()
+    def iso_map(seed: int = 1, gw: int = 26, gh: int = 20, houses: int = 4,
+                lake: bool = True, forest: float = 0.5,
+                forest_ring: int = 0) -> dict:
+        ("Compose a full beautiful village map (roads, fenced yards with "
+         "houses, street lamps, lake, forest, dense flora). forest_ring>0 = "
+         "hamlet in woods: forest belt around the map, road exits to town. "
+         "Deterministic by seed. Returns PNG path + manifest.")
+        return gen_map(seed, gw, gh, houses, lake, forest, forest_ring)
 
     @app.tool()
     def nn_generate(prompt: str = "village", mode: str = "txt2img",

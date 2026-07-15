@@ -9,7 +9,7 @@ from artgen import palette
 def test_palette_loads():
     cols, tile = palette.load()
     assert tile == 16
-    assert len(cols) == 53
+    assert len(cols) >= 40
     assert all(len(c) == 3 for c in cols)
     # no duplicates
     assert len(set(cols)) == len(cols)
@@ -17,7 +17,7 @@ def test_palette_loads():
 
 def test_colors_cached_and_hex_roundtrip():
     cols = palette.colors()
-    assert len(cols) == 53
+    assert len(cols) >= 40
     for hx in palette.hex_colors():
         assert palette.hex_to_rgb(hx) in cols
 

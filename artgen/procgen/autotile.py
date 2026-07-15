@@ -30,7 +30,7 @@ NW, NE, SE, SW = 1, 2, 4, 8
 _CORNER_BITS = (NW, NE, SE, SW)  # order used everywhere: (nw, ne, se, sw)
 
 # foam colours (water side of shoreline)
-_FOAM = ("#7fa8cc", "#e8e8e0")
+_FOAM = ("#5a8a7a", "#e8e0d0")
 
 
 def corner_index(nw: int, ne: int, se: int, sw: int) -> int:

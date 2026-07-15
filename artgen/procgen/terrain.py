@@ -57,7 +57,7 @@ BIOMES: dict[str, dict] = {
         "detail": {"crack": 5, "pebble": 4},
     },
     "snow": {
-        "shades": ["#c8c8c0", "#e8e4dc", "#e8e8e0"],
+        "shades": ["#c8c8c0", "#e8e4dc", "#e8e0d0"],
         "detail": {"sparkle": 5, "blue": 4},
     },
     "swamp": {
@@ -150,7 +150,7 @@ def _scatter(im: Image.Image, kind: str, w: int, h: int, seed: int):
     for _ in range(n("speck")):
         _plot(px, rx(), ry(), w, h, hex_to_rgb("#e3cf94"))
     for _ in range(n("sparkle")):
-        _plot(px, rx(), ry(), w, h, hex_to_rgb("#e8e8e0"))
+        _plot(px, rx(), ry(), w, h, hex_to_rgb("#e8e0d0"))
     for _ in range(n("blue")):
         _plot(px, rx(), ry(), w, h, hex_to_rgb("#948da3"))
     for _ in range(n("mud")):
@@ -215,7 +215,7 @@ def ground_rect(kind: str, w: int, h: int, seed: int = 42) -> Image.Image:
 
 def water(frame: int = 0, tile: int = TILE, seed: int = 42) -> Image.Image:
     """Animated water frame: base blue, ripples, moving highlights."""
-    base, ripple, hi = hex_to_rgb("#2f5e8f"), hex_to_rgb("#3f75ad"), hex_to_rgb("#7fa8cc")
+    base, ripple, hi = hex_to_rgb("#2c4a42"), hex_to_rgb("#3c645a"), hex_to_rgb("#5a8a7a")
     n = value_noise(tile, tile, seed=seed, octaves=2, base_freq=3, tileable=True)
     n = np.roll(n, frame * (tile // 3), axis=1)
     arr = np.empty((tile, tile, 4), dtype=np.uint8)

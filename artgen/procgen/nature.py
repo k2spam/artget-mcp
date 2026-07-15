@@ -17,7 +17,7 @@ from .. import TILE
 from ..canvas import drop_shadow, img, outline, radial_blob, shade_mask
 from ..palette import hex_to_rgb, quantize
 
-OUTLINE = "#241d2b"
+OUTLINE = "#231b04"
 
 # green families for foliage
 LEAF = {

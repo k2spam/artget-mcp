@@ -66,7 +66,7 @@ def person(kind="villager", direction="S", frame=0, seed=0):
             else:
                 d.chord([cx - 4, hy - 5, cx + 4, hy + 2], 180, 360, fill=_rgb(hair))
         if not back:
-            eye = _rgb("#241d2b")
+            eye = _rgb("#231b04")
             if profile:
                 d.point((cx + 2, hy), fill=eye)
                 d.point((cx + 4, hy + 1), fill=_rgb(skin))  # nose bump
@@ -145,7 +145,7 @@ def animal(species="wolf", direction="E", frame=0, seed=0):
     ph = frame % 4
     bc, dark, light = _rgb(body), _shade(body, 0.8), _shade(body, 1.15)
     legc = _rgb("#3a2a1a") if extra.get("legdark") else dark
-    eye = _rgb("#241d2b")
+    eye = _rgb("#231b04")
 
     def _ears_top(d, cx, top):
         if ears == "long":
@@ -256,7 +256,7 @@ def slime(frame=0, seed=0, color="#5aa843"):
         d.ellipse([cx - w, base - h * 2, cx + w, base], fill=_rgb(color))
         d.ellipse([cx - w + 2, base - h * 2 + 1, cx + 1, base - h], fill=_shade(color, 1.2))
         for ex in (cx - 3, cx + 3):
-            d.ellipse([ex - 1, base - h - 4, ex + 2, base - h], fill=_rgb("#241d2b"))
+            d.ellipse([ex - 1, base - h - 4, ex + 2, base - h], fill=_rgb("#231b04"))
             d.point((ex, base - h - 3), fill=_rgb("#e8e8e0"))
     return _billboard(draw, W, H, 12, 18, shadow_r=9)
 
@@ -271,7 +271,7 @@ def bird(kind="chicken", frame=0, seed=0):
             wing = [6, 3, 6, 9][ph]
             d.polygon([(cx, cy), (cx - 10, cy - wing + 4), (cx - 4, cy + 2)], fill=_rgb("#3a3a44"))
             d.polygon([(cx, cy), (cx + 10, cy - wing + 4), (cx + 4, cy + 2)], fill=_rgb("#3a3a44"))
-            d.ellipse([cx - 3, cy - 2, cx + 3, cy + 5], fill=_rgb("#241d2b"))
+            d.ellipse([cx - 3, cy - 2, cx + 3, cy + 5], fill=_rgb("#231b04"))
             d.point((cx - 1, cy), fill=_rgb("#b0453a"))
             d.point((cx + 1, cy), fill=_rgb("#b0453a"))
         else:  # chicken
@@ -280,7 +280,7 @@ def bird(kind="chicken", frame=0, seed=0):
             d.ellipse([cx + 2, base - 12, cx + 8, base - 6], fill=_rgb("#e8e8e0"))  # head
             d.polygon([(cx + 8, base - 9), (cx + 11, base - 8), (cx + 8, base - 7)], fill=_rgb("#e3d05a"))
             d.line([(cx + 5, base - 11), (cx + 6, base - 14)], fill=_rgb("#b0453a"))  # comb
-            d.point((cx + 6, base - 10), fill=_rgb("#241d2b"))
+            d.point((cx + 6, base - 10), fill=_rgb("#231b04"))
             lift = [0, 2, 0, 2][ph]
             d.line([(cx - 1, base), (cx - 1, base + 2 - lift)], fill=_rgb("#e3d05a"))
             d.line([(cx + 2, base), (cx + 2, base + 2 - (2 - lift))], fill=_rgb("#e3d05a"))

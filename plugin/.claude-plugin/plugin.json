@@ -1,6 +1,6 @@
 {
   "name": "heroquarium-artgen",
-  "version": "0.1.2",
+  "version": "0.2.1",
   "description": "Isometric pixel-art generation for the Heroquarium game: terrain biomes, organic lake shorelines, houses (log to stone, 1-2 storeys), decor/props, trees, and animated actors (villagers, animals, enemies) with 4-direction walk cycles, plus baked effect animations (smoke, campfire, window-glow, water) \u2014 all via MCP tools.",
   "author": {
     "name": "Heroquarium"

@@ -1,0 +1,767 @@
+{
+ "house_log_thatch_1": {
+  "prompt": "single cottage, log walls, thatch roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_log_thatch_2": {
+  "prompt": "single cottage, log walls, thatch roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_log_green_1": {
+  "prompt": "single cottage, log walls, green roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_log_green_2": {
+  "prompt": "single cottage, log walls, green roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_log_red_1": {
+  "prompt": "single cottage, log walls, red roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_log_red_2": {
+  "prompt": "single cottage, log walls, red roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_log_slate_1": {
+  "prompt": "single cottage, log walls, slate roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_log_slate_2": {
+  "prompt": "single cottage, log walls, slate roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_timber_thatch_1": {
+  "prompt": "single cottage, timber walls, thatch roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_timber_thatch_2": {
+  "prompt": "single cottage, timber walls, thatch roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_timber_green_1": {
+  "prompt": "single cottage, timber walls, green roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_timber_green_2": {
+  "prompt": "single cottage, timber walls, green roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_timber_red_1": {
+  "prompt": "single cottage, timber walls, red roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_timber_red_2": {
+  "prompt": "single cottage, timber walls, red roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_timber_slate_1": {
+  "prompt": "single cottage, timber walls, slate roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_timber_slate_2": {
+  "prompt": "single cottage, timber walls, slate roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_plaster_thatch_1": {
+  "prompt": "single cottage, plaster walls, thatch roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_plaster_thatch_2": {
+  "prompt": "single cottage, plaster walls, thatch roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_plaster_green_1": {
+  "prompt": "single cottage, plaster walls, green roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_plaster_green_2": {
+  "prompt": "single cottage, plaster walls, green roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_plaster_red_1": {
+  "prompt": "single cottage, plaster walls, red roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_plaster_red_2": {
+  "prompt": "single cottage, plaster walls, red roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_plaster_slate_1": {
+  "prompt": "single cottage, plaster walls, slate roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_plaster_slate_2": {
+  "prompt": "single cottage, plaster walls, slate roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_stone_thatch_1": {
+  "prompt": "single cottage, stone walls, thatch roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_stone_thatch_2": {
+  "prompt": "single cottage, stone walls, thatch roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_stone_green_1": {
+  "prompt": "single cottage, stone walls, green roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_stone_green_2": {
+  "prompt": "single cottage, stone walls, green roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_stone_red_1": {
+  "prompt": "single cottage, stone walls, red roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_stone_red_2": {
+  "prompt": "single cottage, stone walls, red roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "house_stone_slate_1": {
+  "prompt": "single cottage, stone walls, slate roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   341.91609756097563
+  ],
+  "native": 246
+ },
+ "house_stone_slate_2": {
+  "prompt": "single cottage, stone walls, slate roof, detailed rooftop",
+  "strength": 0.55,
+  "anchor": [
+   381.12780487804883,
+   376.25756097560975
+  ],
+  "native": 246
+ },
+ "tree_oak_0": {
+  "prompt": "single lush oak tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_oak_1": {
+  "prompt": "single lush oak tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_oak_2": {
+  "prompt": "single lush oak tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_maple_0": {
+  "prompt": "single lush maple tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_maple_1": {
+  "prompt": "single lush maple tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_maple_2": {
+  "prompt": "single lush maple tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_birch_0": {
+  "prompt": "single lush birch tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_birch_1": {
+  "prompt": "single lush birch tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_birch_2": {
+  "prompt": "single lush birch tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_poplar_0": {
+  "prompt": "single lush poplar tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_poplar_1": {
+  "prompt": "single lush poplar tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_poplar_2": {
+  "prompt": "single lush poplar tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_linden_0": {
+  "prompt": "single lush linden tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_linden_1": {
+  "prompt": "single lush linden tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "tree_linden_2": {
+  "prompt": "single lush linden tree, layered clumpy canopy",
+  "strength": 0.6,
+  "anchor": [
+   373.89473684210526,
+   535.578947368421
+  ],
+  "native": 152
+ },
+ "conifer_spruce_0": {
+  "prompt": "single pine tree, layered branches",
+  "strength": 0.55,
+  "anchor": [
+   374.5185185185185,
+   549.9259259259259
+  ],
+  "native": 162
+ },
+ "conifer_spruce_1": {
+  "prompt": "single pine tree, layered branches",
+  "strength": 0.55,
+  "anchor": [
+   374.5185185185185,
+   549.9259259259259
+  ],
+  "native": 162
+ },
+ "conifer_pine_0": {
+  "prompt": "single pine tree, layered branches",
+  "strength": 0.55,
+  "anchor": [
+   374.9647058823529,
+   560.1882352941176
+  ],
+  "native": 170
+ },
+ "conifer_pine_1": {
+  "prompt": "single pine tree, layered branches",
+  "strength": 0.55,
+  "anchor": [
+   374.9647058823529,
+   560.1882352941176
+  ],
+  "native": 170
+ },
+ "conifer_fir_0": {
+  "prompt": "single pine tree, layered branches",
+  "strength": 0.55,
+  "anchor": [
+   374.27848101265823,
+   544.4050632911393
+  ],
+  "native": 158
+ },
+ "conifer_fir_1": {
+  "prompt": "single pine tree, layered branches",
+  "strength": 0.55,
+  "anchor": [
+   374.27848101265823,
+   544.4050632911393
+  ],
+  "native": 158
+ },
+ "prop_well": {
+  "prompt": "single well prop",
+  "strength": 0.5,
+  "anchor": [
+   381.190243902439,
+   384.93658536585366
+  ],
+  "native": 164
+ },
+ "prop_barrel": {
+  "prompt": "single barrel prop",
+  "strength": 0.5,
+  "anchor": [
+   379.12380952380954,
+   408.38095238095235
+  ],
+  "native": 126
+ },
+ "prop_crate": {
+  "prompt": "single crate prop",
+  "strength": 0.5,
+  "anchor": [
+   380.50909090909096,
+   354.90909090909093
+  ],
+  "native": 132
+ },
+ "prop_firewood": {
+  "prompt": "single firewood prop",
+  "strength": 0.5,
+  "anchor": [
+   333.1764705882353,
+   338.82352941176475
+  ],
+  "native": 136
+ },
+ "prop_garden_bed": {
+  "prompt": "single garden bed prop",
+  "strength": 0.5,
+  "anchor": [
+   355.7574193548387,
+   303.2361290322581
+  ],
+  "native": 155
+ },
+ "prop_lamp_post": {
+  "prompt": "single lamp post prop",
+  "strength": 0.5,
+  "anchor": [
+   338.82352941176475,
+   508.2352941176471
+  ],
+  "native": 136
+ },
+ "prop_bench": {
+  "prompt": "single bench prop",
+  "strength": 0.5,
+  "anchor": [
+   313.153488372093,
+   359.5906976744186
+  ],
+  "native": 129
+ },
+ "prop_bush": {
+  "prompt": "single bush prop",
+  "strength": 0.5,
+  "anchor": [
+   384.0,
+   460.8
+  ],
+  "native": 120
+ },
+ "prop_rock": {
+  "prompt": "single rock prop",
+  "strength": 0.5,
+  "anchor": [
+   377.49152542372883,
+   449.0847457627119
+  ],
+  "native": 118
+ },
+ "prop_flowers": {
+  "prompt": "single flowers prop",
+  "strength": 0.5,
+  "anchor": [
+   384.0,
+   448.0
+  ],
+  "native": 108
+ },
+ "prop_stump": {
+  "prompt": "single stump prop",
+  "strength": 0.5,
+  "anchor": [
+   384.0,
+   450.2068965517241
+  ],
+  "native": 116
+ },
+ "prop_boat": {
+  "prompt": "single boat prop",
+  "strength": 0.5,
+  "anchor": [
+   378.0923076923077,
+   454.8923076923077
+  ],
+  "native": 130
+ },
+ "tile_grass_0": {
+  "prompt": "seamless grass ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_grass_1": {
+  "prompt": "seamless grass ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_grass_2": {
+  "prompt": "seamless grass ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_grass_3": {
+  "prompt": "seamless grass ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_meadow_0": {
+  "prompt": "seamless meadow ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_meadow_1": {
+  "prompt": "seamless meadow ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_meadow_2": {
+  "prompt": "seamless meadow ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_meadow_3": {
+  "prompt": "seamless meadow ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_forest_floor_0": {
+  "prompt": "seamless forest floor ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_forest_floor_1": {
+  "prompt": "seamless forest floor ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_forest_floor_2": {
+  "prompt": "seamless forest floor ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_forest_floor_3": {
+  "prompt": "seamless forest floor ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_path_0": {
+  "prompt": "seamless path ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_path_1": {
+  "prompt": "seamless path ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_path_2": {
+  "prompt": "seamless path ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_path_3": {
+  "prompt": "seamless path ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_sand_0": {
+  "prompt": "seamless sand ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_sand_1": {
+  "prompt": "seamless sand ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_sand_2": {
+  "prompt": "seamless sand ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ },
+ "tile_sand_3": {
+  "prompt": "seamless sand ground texture, top-down isometric tiles",
+  "strength": 0.4,
+  "anchor": [
+   384.0,
+   303.1578947368421
+  ],
+  "native": 304
+ }
+}
