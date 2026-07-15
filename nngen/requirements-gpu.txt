@@ -9,4 +9,6 @@ peft
 bitsandbytes          # AdamW8bit для обучения
 numpy
 pillow
+fastapi              # nngen/worker.py — HTTP-мост для MCP
+uvicorn
 # для обучения дополнительно нужен клон kohya sd-scripts (см. RUNBOOK.md)

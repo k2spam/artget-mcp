@@ -16,3 +16,4 @@ build/*.plugin
 
 # OS
 .DS_Store
+nngen/endpoint.txt

@@ -154,6 +154,68 @@ def gen_anim(effect="smoke", seed=0, nframes=8) -> dict:
     return {"paths": [path], "manifest": manifest, "preview_png_b64": _b64(sheet, scale=2)}
 
 
+# ---- nngen bridge (remote GPU worker over HTTP) ----------------------------
+
+def _nn_endpoint() -> str | None:
+    ep = os.environ.get("NNGEN_ENDPOINT")
+    if ep:
+        return ep.rstrip("/")
+    cfg = os.path.join(ROOT, "nngen", "endpoint.txt")
+    if os.path.exists(cfg):
+        ep = open(cfg, encoding="utf-8").read().strip()
+        if ep:
+            return ep.rstrip("/")
+    return None
+
+
+def gen_nn(prompt="village", mode="txt2img", input_path="", strength=0.6,
+           n=1, steps=30, seed=-1, size=1024) -> dict:
+    """Neural hqiso generation via the GPU worker (nngen/worker.py).
+
+    prompt = preset name (village/house/nature/villager/…) or free text.
+    mode img2img needs input_path = procgen blockout PNG (repo-relative or abs).
+    """
+    import urllib.request
+
+    ep = _nn_endpoint()
+    if not ep:
+        return {"error": "nngen worker endpoint not configured",
+                "fix": "start nngen/worker.py on the GPU machine, then put "
+                       "http://<gpu-ip>:8188 into nngen/endpoint.txt or "
+                       "NNGEN_ENDPOINT env (see nngen/RUNBOOK.md §7)"}
+    payload = {"prompt": prompt, "mode": mode, "strength": strength,
+               "n": n, "steps": steps, "seed": seed, "size": size}
+    if mode == "img2img":
+        p = input_path if os.path.isabs(input_path) else os.path.join(ROOT, input_path)
+        if not os.path.exists(p):
+            return {"error": f"input image not found: {p}"}
+        payload["image_b64"] = base64.b64encode(open(p, "rb").read()).decode("ascii")
+    req = urllib.request.Request(
+        ep + "/generate", data=json.dumps(payload).encode(),
+        headers={"Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=600) as r:
+            res = json.loads(r.read())
+    except Exception as e:
+        return {"error": f"nngen worker unreachable at {ep}: {e}",
+                "fix": "is nngen/worker.py running on the GPU machine? "
+                       "firewall open for the port? see nngen/RUNBOOK.md §7"}
+    out_dir = os.path.join(ROOT, "out", "nngen_remote")
+    os.makedirs(out_dir, exist_ok=True)
+    paths = []
+    for img in res.get("images", []):
+        path = os.path.join(out_dir, img["name"])
+        open(path, "wb").write(base64.b64decode(img["png_b64"]))
+        paths.append(path)
+    result = {"paths": paths, "seeds": res.get("seeds", []),
+              "worker": res.get("device", "?")}
+    if paths:
+        prev = Image.open(paths[0])
+        prev.thumbnail((512, 512))
+        result["preview_png_b64"] = _b64(prev, scale=1)
+    return result
+
+
 # ---- MCP wiring (optional import; generators work without it) -------------
 
 def _register(app):
@@ -212,6 +274,15 @@ def _register(app):
     def iso_anim(effect: str = "smoke", seed: int = 0, nframes: int = 8) -> dict:
         "Baked effect animation sheet (smoke/campfire/glow/water) + manifest."
         return gen_anim(effect, seed, nframes)
+
+    @app.tool()
+    def nn_generate(prompt: str = "village", mode: str = "txt2img",
+                    input_path: str = "", strength: float = 0.6, n: int = 1,
+                    steps: int = 30, seed: int = -1) -> dict:
+        ("Neural hqiso-style art via remote SDXL+LoRA GPU worker. prompt = "
+         "preset (village/house/nature/villager) or free text; mode img2img "
+         "beautifies a procgen blockout given via input_path. Slow (~1 min).")
+        return gen_nn(prompt, mode, input_path, strength, n, steps, seed)
 
 
 def _diagnostics() -> str:

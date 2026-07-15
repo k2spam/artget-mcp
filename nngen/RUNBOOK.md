@@ -82,6 +82,29 @@ git commit -m "nngen: trained hqiso lora vN + samples" && git push
 
 В `out/` коммить только отобранные сэмплы (папка в .gitignore — добавлять через `git add -f`).
 
+## 7. HTTP-воркер — генерация из Claude-сессии (MCP tool nn_generate)
+
+Поднимает SDXL+LoRA как сервис в локальной сети; MCP-сервер на Mac ходит к нему.
+
+На GPU-машине:
+```bash
+source ~/venv-nngen/bin/activate && cd ~/ArtGen-MCP
+pip install fastapi uvicorn        # если ещё нет
+python nngen/worker.py             # слушает 0.0.0.0:8188
+```
+- Windows спросит про firewall — разрешить для частной сети. (WSL2: ещё нужен
+  проброс порта: `netsh interface portproxy add v4tov4 listenport=8188 connectaddress=<wsl-ip> connectport=8188` в админ-PowerShell.)
+- Узнать IP машины: `ipconfig` → IPv4-адрес (вида 192.168.x.x).
+- Проверка с Mac: открыть в браузере `http://<gpu-ip>:8188/health` — должно
+  ответить `{"ok":true,"cuda":true,...}`.
+
+На Mac (один раз):
+```bash
+echo "http://<gpu-ip>:8188" > nngen/endpoint.txt   # файл в .gitignore
+```
+Дальше в Claude-сессии доступен тул `nn_generate(prompt, mode, input_path,
+strength, n)` — картинки сохраняются в `out/nngen_remote/`.
+
 ## Типовой цикл итерации
 
 pull → (шаг 3 если менялся датасет/конфиг) → шаги 4–5 → push сэмплов →
